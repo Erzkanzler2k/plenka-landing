@@ -45,6 +45,36 @@ const faqs = [
   ['Где посмотреть исходный код и обновления?', 'Проект полностью открыт и публикуется на GitHub с готовыми релизными APK-файлами.'],
 ]
 
+function LogoMark({ size = 32 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 108 108" fill="none" xmlns="http://www.w3.org/2000/svg" className="brand-icon">
+      <rect x="22" y="24" width="64" height="60" rx="8" fill="url(#brand-grad)" />
+      <rect x="25" y="30" width="4" height="5" rx="1" fill="#0E0E16" />
+      <rect x="25" y="42" width="4" height="5" rx="1" fill="#0E0E16" />
+      <rect x="25" y="54" width="4" height="5" rx="1" fill="#0E0E16" />
+      <rect x="25" y="66" width="4" height="5" rx="1" fill="#0E0E16" />
+      <rect x="79" y="30" width="4" height="5" rx="1" fill="#0E0E16" />
+      <rect x="79" y="42" width="4" height="5" rx="1" fill="#0E0E16" />
+      <rect x="79" y="54" width="4" height="5" rx="1" fill="#0E0E16" />
+      <rect x="79" y="66" width="4" height="5" rx="1" fill="#0E0E16" />
+      <rect x="34" y="30" width="40" height="48" rx="4" fill="#0E0E16" />
+      <path d="M40 38H68C69.1 38 70 38.9 70 40V68C70 69.1 69.1 70 68 70H64C62.9 70 62 69.1 62 68V46H46V68C46 69.1 45.1 70 44 70H40C38.9 70 38 69.1 38 68V40C38 38.9 38.9 38 40 38Z" fill="url(#p-grad)" />
+      <path d="M51 52L59 57L51 62V52Z" fill="#FF5470" />
+      <defs>
+        <linearGradient id="brand-grad" x1="22" y1="24" x2="86" y2="84" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#7C6CFF" />
+          <stop offset="1" stopColor="#FF5470" />
+        </linearGradient>
+        <linearGradient id="p-grad" x1="38" y1="38" x2="70" y2="70" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#FFFFFF" />
+          <stop offset="0.45" stopColor="#D6D1FF" />
+          <stop offset="1" stopColor="#FF7A95" />
+        </linearGradient>
+      </defs>
+    </svg>
+  )
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [toast, setToast] = useState(false)
@@ -69,7 +99,7 @@ function App() {
       <header className="site-header">
         <nav className="container nav" aria-label="Основная навигация">
           <a className="brand" href="#top" onClick={closeMenu} aria-label="Пленка, на главную">
-            <span className="brand-mark">П</span><span>Плёнка</span>
+            <LogoMark size={32} /><span>Плёнка</span>
           </a>
           <div className={`nav-links ${menuOpen ? 'nav-links-open' : ''}`}>
             <a href="#features" onClick={closeMenu}>Возможности</a>
@@ -162,7 +192,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="footer"><div className="container footer-inner"><a className="brand" href="#top"><span className="brand-mark">П</span><span>Плёнка</span></a><span>Мы поможем выбрать фильм вам.</span><div><a href="#features">Возможности</a><a href="#filters">Фильтры</a><a href="#faq">FAQ</a><a href={LATEST_RELEASE_URL} target="_blank" rel="noreferrer">GitHub</a></div><small>© 2026</small></div></footer>
+      <footer className="footer"><div className="container footer-inner"><a className="brand" href="#top"><LogoMark size={32} /><span>Плёнка</span></a><span>Мы поможем выбрать фильм вам.</span><div><a href="#features">Возможности</a><a href="#filters">Фильтры</a><a href="#faq">FAQ</a><a href={LATEST_RELEASE_URL} target="_blank" rel="noreferrer">GitHub</a></div><small>© 2026</small></div></footer>
       {toast && <div className="toast" role="status"><Check size={17} /> Начинается загрузка APK v2.2</div>}
     </div>
   )
