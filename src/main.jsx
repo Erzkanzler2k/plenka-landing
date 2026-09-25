@@ -18,7 +18,7 @@ import {
 import './styles.css'
 
 const LATEST_RELEASE_URL = 'https://github.com/Erzkanzler2k/plenka/releases/latest'
-const APK_DOWNLOAD_URL = 'https://github.com/Erzkanzler2k/plenka/releases/latest/download/Plenka-v2.2.28-release.apk'
+const APK_DOWNLOAD_URL = 'https://github.com/Erzkanzler2k/plenka/releases/latest/download/Plenka-v2.2.29-release.apk'
 
 const features = [
   { number: '01', title: 'Свайп-лента', text: 'Случайные фильмы и сериалы по вашим фильтрам. Нравится — вправо, не нравится — влево. Ошиблись? Есть отмена последнего свайпа.' },
@@ -108,21 +108,21 @@ function App() {
             <a href="#faq" onClick={closeMenu}>FAQ</a>
             <button className="nav-mobile-close" onClick={closeMenu} aria-label="Закрыть меню"><X size={19} /></button>
           </div>
-          <button className="nav-download" onClick={download}>Скачать APK v2.2.28 <ArrowUpRight size={16} /></button>
+          <button className="nav-download" onClick={download}>Скачать APK v2.2.29 <ArrowUpRight size={16} /></button>
           <button className="nav-menu" onClick={() => setMenuOpen(!menuOpen)} aria-label="Открыть меню" aria-expanded={menuOpen}>{menuOpen ? <X /> : <Menu />}</button>
         </nav>
       </header>
 
       <main id="top">
         <section className="hero container">
-          <div className="hero-topline"><span>ПЛЕНКА v2.2.28 / ANDROID 8+</span><span>Помощник в выборе фильма</span><span>КАТАЛОГ НА TMDB</span></div>
+          <div className="hero-topline"><span>ПЛЕНКА v2.2.29 / ANDROID 8+</span><span>Помощник в выборе фильма</span><span>КАТАЛОГ НА TMDB</span></div>
           <div className="hero-layout">
             <div className="hero-copy">
               <p className="kicker"><span />Кино без долгого поиска</p>
               <h1>Мы поможем<br />выбрать фильм<br />ВАМ!</h1>
               <p className="hero-lead">Свайпайте карточки, настраивайте мульти-жанры и смотрите внутри приложения. Режим «Картинка в картинке» (PiP), трейлеры, страницы актёров и умные подборки настроений.</p>
               <div className="hero-actions">
-                <button className="button button-gradient" onClick={download}>Скачать APK (v2.2.28) <ArrowUpRight size={18} /></button>
+                <button className="button button-gradient" onClick={download}>Скачать APK (v2.2.29) <ArrowUpRight size={18} /></button>
                 <a className="under-link" href={LATEST_RELEASE_URL} target="_blank" rel="noreferrer">Релиз на GitHub <ArrowUpRight size={16} /></a>
               </div>
             </div>
@@ -184,7 +184,7 @@ function App() {
           </div>
         </section>
 
-        <section className="devices" id="devices"><div className="container devices-inner"><div><p className="kicker"><span />Релиз v2.2.28 для Android</p><h2>Кино<br /><i>в кармане.</i></h2><p className="devices-copy">Пленка работает на Android 8.0 и выше: свайп-лента с мульти-жанрами, поиск по персонам, трейлеры, избранное, история с таймкодами и встроенный плеер с PiP.</p><button className="button button-light" onClick={download}>Скачать APK v2.2.28 <ArrowUpRight size={18} /></button></div><div className="device-list"><div><span className="device-badge">TMDB</span><span>Каталог</span><small>Фильмы, сериалы и персоны</small></div><div><span className="device-badge">PiP</span><span>Плеер</span><small>Картинка в картинке</small></div><div><span className="device-badge">8.0+</span><span>Android</span><small>Минимальная версия</small></div></div></div></section>
+        <section className="devices" id="devices"><div className="container devices-inner"><div><p className="kicker"><span />Релиз v2.2.29 для Android</p><h2>Кино<br /><i>в кармане.</i></h2><p className="devices-copy">Пленка работает на Android 8.0 и выше: свайп-лента с мульти-жанрами, поиск по персонам, трейлеры, избранное, история с таймкодами и встроенный плеер с PiP.</p><button className="button button-light" onClick={download}>Скачать APK v2.2.29 <ArrowUpRight size={18} /></button></div><div className="device-list"><div><span className="device-badge">TMDB</span><span>Каталог</span><small>Фильмы, сериалы и персоны</small></div><div><span className="device-badge">PiP</span><span>Плеер</span><small>Картинка в картинке</small></div><div><span className="device-badge">8.0+</span><span>Android</span><small>Минимальная версия</small></div></div></div></section>
 
         <section className="faq container" id="faq">
           <div className="section-number">05 <span>/</span> ЧАСТЫЕ ВОПРОСЫ</div>
@@ -193,7 +193,7 @@ function App() {
       </main>
 
       <footer className="footer"><div className="container footer-inner"><a className="brand" href="#top"><LogoMark size={32} /><span>Плёнка</span></a><span>Мы поможем выбрать фильм вам.</span><div><a href="#features">Возможности</a><a href="#filters">Фильтры</a><a href="#faq">FAQ</a><a href={LATEST_RELEASE_URL} target="_blank" rel="noreferrer">GitHub</a></div><small>© 2026</small></div></footer>
-      {toast && <div className="toast" role="status"><Check size={17} /> Начинается загрузка APK v2.2.28</div>}
+      {toast && <div className="toast" role="status"><Check size={17} /> Начинается загрузка APK v2.2.29</div>}
     </div>
   )
 }
