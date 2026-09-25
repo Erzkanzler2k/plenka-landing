@@ -131,7 +131,7 @@ function App() {
                 <div className="phone-status"><span>9:41</span><span>•••</span></div>
                 <div className="phone-appbar"><span className="phone-logo">Плёнка</span><Settings size={17} /></div>
                 <div className="phone-card">
-                  <img src="/app-screens/poster-card.png" alt="Карточка фильма Матрица, 1999, рейтинг 8.2" />
+                  <img src={`${import.meta.env.BASE_URL}app-screens/poster-card.png`} alt="Карточка фильма Матрица, 1999, рейтинг 8.2" />
                   <span className="phone-stamp phone-stamp-like">НРАВИТСЯ</span>
                   <span className="phone-stamp phone-stamp-nope">НЕ НРАВИТСЯ</span>
                 </div>
@@ -178,9 +178,9 @@ function App() {
           <div className="section-number">04 <span>/</span> ЭКРАНЫ</div>
           <div className="gallery-heading"><h2>Как выглядит<br /><i>Пленка</i></h2><p>Фирменная афишная типографика<br />и неон на глубоком фоне.</p></div>
           <div className="gallery-track">
-            <figure><img src="/app-screens/poster-card.png" alt="Карточка фильма в свайп-ленте" /><figcaption><b>01</b><span>Карточка фильма</span></figcaption></figure>
-            <figure><img src="/app-screens/filters.png" alt="Экран фильтров подборки" /><figcaption><b>02</b><span>Фильтры</span></figcaption></figure>
-            <figure><img src="/app-screens/typography.png" alt="Фирменная типографика Пленки" /><figcaption><b>03</b><span>Типографика</span></figcaption></figure>
+            <figure><img src={`${import.meta.env.BASE_URL}app-screens/poster-card.png`} alt="Карточка фильма в свайп-ленте" /><figcaption><b>01</b><span>Карточка фильма</span></figcaption></figure>
+            <figure><img src={`${import.meta.env.BASE_URL}app-screens/filters.png`} alt="Экран фильтров подборки" /><figcaption><b>02</b><span>Фильтры</span></figcaption></figure>
+            <figure><img src={`${import.meta.env.BASE_URL}app-screens/typography.png`} alt="Фирменная типографика Пленки" /><figcaption><b>03</b><span>Типографика</span></figcaption></figure>
           </div>
         </section>
 
