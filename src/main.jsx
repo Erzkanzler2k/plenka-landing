@@ -1,82 +1,44 @@
 import { useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import { ArrowDown, ArrowUpRight, Menu, X } from 'lucide-react'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 import './styles.css'
 
-const RELEASE_URL = 'https://github.com/Erzkanzler2k/plenka/releases/latest'
 const APK_URL = 'https://github.com/Erzkanzler2k/plenka/releases/latest/download/Plenka-v2.2.31-release.apk'
+const RELEASE_URL = 'https://github.com/Erzkanzler2k/plenka/releases/latest'
 const asset = (name) => `${import.meta.env.BASE_URL}app-screens/${name}`
 
-const scenes = [
-  { name: 'Свайпы', image: 'swipe.png', text: 'Один фильм — одно решение.' },
-  { name: 'Популярное', image: 'popular.png', text: 'Подборки, которые хочется открыть.' },
-  { name: 'Каталог', image: 'catalog.png', text: 'Всё, что хочется посмотреть.' },
-  { name: 'Поиск', image: 'search.png', text: 'Находи фильмы и персон.' },
+const posters = [
+  { file: 'posters/poster-1.png', title: 'Человек-паук', className: 'poster-a' },
+  { file: 'posters/poster-2.png', title: 'Обитель зла', className: 'poster-b' },
+  { file: 'posters/poster-3.png', title: 'На краю Оук-стрит', className: 'poster-c' },
+  { file: 'posters/poster-4.png', title: 'Хитрый Койот', className: 'poster-d' },
+  { file: 'posters/poster-5.png', title: 'Одиссея', className: 'poster-e' },
 ]
 
 function Logo() {
   return <a className="logo" href="#top" aria-label="Плёнка — на главную"><span className="logo-mark"><i /></span><span>Плёнка</span></a>
 }
 
-function Download({ large = false }) {
-  const [done, setDone] = useState(false)
-  const open = () => {
-    window.open(APK_URL, '_blank', 'noopener,noreferrer')
-    setDone(true)
-    window.setTimeout(() => setDone(false), 2800)
-  }
-  return <><button className={`download ${large ? 'download-large' : ''}`} onClick={open}><span>Скачать APK</span><span className="download-icon"><ArrowUpRight size={16} /></span></button>{done && <span className="download-note" role="status">Загрузка начинается…</span>}</>
-}
-
 function App() {
   const [menu, setMenu] = useState(false)
+  const [toast, setToast] = useState(false)
+  const download = () => {
+    window.open(APK_URL, '_blank', 'noopener,noreferrer')
+    setToast(true)
+    window.setTimeout(() => setToast(false), 2600)
+  }
   return <div className="page" id="top">
-    <header className="topbar">
-      <div className="wrap topbar-inner">
-        <Logo />
-        <nav className={menu ? 'menu menu-open' : 'menu'} aria-label="Навигация">
-          <a href="#inside" onClick={() => setMenu(false)}>Внутри</a>
-          <a href="#scenes" onClick={() => setMenu(false)}>Кадры</a>
-          <a href="#download" onClick={() => setMenu(false)}>Скачать</a>
-          <button className="close-menu" onClick={() => setMenu(false)} aria-label="Закрыть меню"><X size={20} /></button>
-        </nav>
-        <div className="top-actions"><a href={RELEASE_URL} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a><Download /><button className="menu-toggle" onClick={() => setMenu(true)} aria-label="Открыть меню"><Menu size={20} /></button></div>
-      </div>
-    </header>
-
+    <header className="topbar"><div className="wrap topbar-inner"><Logo /><nav className={menu ? 'menu menu-open' : 'menu'}><a href="#posters" onClick={() => setMenu(false)}>Постеры</a><a href={RELEASE_URL} target="_blank" rel="noreferrer" onClick={() => setMenu(false)}>GitHub</a><button className="close" onClick={() => setMenu(false)} aria-label="Закрыть меню"><X size={19} /></button></nav><div className="top-actions"><button className="download" onClick={download}><span>Скачать APK</span><span className="download-icon"><ArrowUpRight size={16} /></span></button><button className="menu-button" onClick={() => setMenu(true)} aria-label="Открыть меню"><Menu size={20} /></button></div></div></header>
     <main>
-      <section className="hero wrap">
-        <div className="hero-backdrop" aria-hidden="true"><img src={asset('swipe.png')} alt="" /></div>
-        <div className="hero-content">
-          <p className="kicker">Плёнка / Android 8.0+</p>
-          <h1>Начни<br /><span>с кадра.</span></h1>
-          <p className="hero-lead">Свайпай фильмы, собирай свою ленту и продолжай с того места, где остановился.</p>
-          <div className="hero-actions"><Download large /><a className="text-link" href="#inside">Как это работает <ArrowDown size={15} /></a></div>
-        </div>
-        <div className="hero-stamp" aria-hidden="true"><span>СВЕЖИЙ</span><strong>КАДР</strong><small>каждый раз</small></div>
-        <div className="hero-foot"><span>Фильмы / Сериалы / Аниме</span><span>PiP · История · Продолжение</span><span>Листай вниз ↓</span></div>
+      <section className="poster-hall wrap" id="posters">
+        <div className="hall-copy"><p className="overline">Плёнка / Android 8.0+</p><h1>Начни<br /><em>с кадра.</em></h1><p>Свайпай фильмы, собирай ленту и продолжай с того места, где остановился.</p><button className="download hall-download" onClick={download}><span>Скачать APK</span><span className="download-icon"><ArrowUpRight size={18} /></span></button></div>
+        <div className="poster-wall" aria-label="Постеры фильмов">{posters.map((poster) => <figure className={`poster ${poster.className}`} key={poster.file}><img src={asset(poster.file)} alt={poster.title} /><figcaption>{poster.title}</figcaption></figure>)}<div className="poster-note">Настоящие кадры<br />из Плёнки</div></div>
+        <div className="hall-bottom"><span>Фильмы</span><span>Сериалы</span><span>Аниме</span><span>Смотри в своём ритме</span></div>
       </section>
-
-      <div className="ribbon" aria-hidden="true"><div>СВАЙПАЙ&nbsp;&nbsp; · &nbsp;&nbsp;ВЫБИРАЙ&nbsp;&nbsp; · &nbsp;&nbsp;СМОТРИ&nbsp;&nbsp; · &nbsp;&nbsp;СВАЙПАЙ&nbsp;&nbsp; · &nbsp;&nbsp;ВЫБИРАЙ&nbsp;&nbsp; · &nbsp;&nbsp;СМОТРИ&nbsp;&nbsp;</div></div>
-
-      <section className="inside wrap" id="inside">
-        <div className="section-title"><p className="kicker">Не приложение-набор функций</p><h2>Три шага.<br /><em>Один вечер.</em></h2></div>
-        <div className="inside-list">
-          <article><span>01</span><div><h3>Выбери настроение</h3><p>Фильмы, сериалы и аниме — с фильтрами, которые действительно помогают сузить выбор.</p></div></article>
-          <article><span>02</span><div><h3>Поймай кадр</h3><p>Свайп-лента показывает следующий фильм. Нравится — оставляй. Не нравится — идём дальше.</p></div></article>
-          <article><span>03</span><div><h3>Продолжи историю</h3><p>Прогресс, серии и избранное сохраняются. Можно закрыть приложение и вернуться позже.</p></div></article>
-        </div>
-      </section>
-
-      <section className="scenes wrap" id="scenes">
-        <div className="scenes-head"><div><p className="kicker">Реальный интерфейс</p><h2>Кадр за кадром.</h2></div><p>Один интерфейс для выбора, просмотра и возвращения.</p></div>
-        <div className="scene-grid">{scenes.map((scene, index) => <figure className={index === 0 ? 'scene scene-first' : 'scene'} key={scene.name}><div><img src={asset(scene.image)} alt={scene.name} /></div><figcaption><strong>{scene.name}</strong><span>{scene.text}</span></figcaption></figure>)}</div>
-      </section>
-
-      <section className="download-section" id="download"><div className="wrap download-content"><p className="kicker">Твой следующий фильм</p><h2>Уже ждёт<br /><em>в кармане.</em></h2><Download large /><small>Без аккаунта. Без рекламы. Android 8.0 и выше.</small></div></section>
+      <section className="after-hall wrap"><div className="after-line" /><div className="after-content"><p>Не ищи следующий фильм часами.</p><h2>Просто начни<br /><em>с одного кадра.</em></h2><button className="download" onClick={download}><span>Скачать APK</span><span className="download-icon"><ArrowUpRight size={16} /></span></button></div><div className="after-image"><img src={asset('swipe.png')} alt="Экран свайпов Плёнки" /></div></section>
     </main>
-
-    <footer className="footer wrap"><Logo /><span>Помогаем выбрать фильм.</span><a href={RELEASE_URL} target="_blank" rel="noreferrer">Все релизы <ArrowUpRight size={14} /></a></footer>
+    <footer className="footer wrap"><Logo /><span>Помогаем выбрать фильм.</span><a href={RELEASE_URL} target="_blank" rel="noreferrer">Релизы <ArrowUpRight size={14} /></a></footer>
+    {toast && <div className="toast" role="status">Загрузка начинается…</div>}
   </div>
 }
 
